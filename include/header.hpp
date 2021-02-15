@@ -55,6 +55,8 @@ template <typename T>
 shared_ptr<T>::shared_ptr(shared_ptr&& r) noexcept {
   _counter = std::move(r._counter);
   _object = std::move(r._object);
+  r._counter = nullptr;
+  r._object = nullptr;
 }
 
 template <typename T>
@@ -82,6 +84,8 @@ shared_ptr<T>& shared_ptr<T>::operator=(shared_ptr&& r) noexcept {
   reset();
   _counter = std::move(r._counter);
   _object = std::move(r._object);
+  r._counter = nullptr;
+  r._object = nullptr;
   return *this;
 }
 
